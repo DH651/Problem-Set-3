@@ -14,7 +14,7 @@
  */
 
 grammar Expression;
-import Configuration;
+import Configuration;  
 
 /*
  * Nonterminal rules (a.k.a. parser rules) must be lowercase, e.g. "root" and "sum" below.
@@ -29,10 +29,30 @@ import Configuration;
  * For more information, see reading 18 about parser generators, which explains
  * how to use Antlr and has links to reference information.
  */
-root : sum EOF;
-sum : primitive ('+' primitive)*;
-primitive : NUMBER | '(' sum ')';
-NUMBER : [0-9]+;
+
+root : expression EOF;
+
+expression : '(' expression ')'
+           | expression OP1 expression
+           | expression OP2 expression
+           | term
+           ;
+           
+                
+OP1 :  '*'|'/' ;
+
+OP2 :  '+'|'-' ;  
+     
+term : VARIABLE 
+     | CONSTANT  
+     ;
+          
+VARIABLE : [A-Za-z]+;
+
+CONSTANT : [0-9]+ ('.'[0-9]+)?;
 
 /* Tell Antlr to ignore spaces around tokens. */
-SPACES : [ ]+ -> skip;
+SPACES : (' '| '\t' | '\r' | '\n')+ -> skip;
+
+COMMENT1 : '\n' .*? '#' -> skip;
+COMMENT2 : '/*' .*? '*/' -> skip;

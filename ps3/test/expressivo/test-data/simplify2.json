@@ -1,0 +1,35 @@
+[
+    {
+        "input": "x*y + y*y",
+        "mapping": {
+            "x": 1,
+            "y": 4
+        },
+        "expectedOutput": "20"
+    },
+    {
+        "input": "x*z + z*y",
+        "mapping": {
+            "Foo": 7.89,
+            "z": 0.12
+        },
+        "expectedOutput": "x * 0.12 + 0.12 * y"
+    },
+    {
+        "input": "0 / z*y",
+        "mapping": {
+            "Foo": 7.89,
+            "z": 0.12
+        },
+        "expectedOutput": "0"
+    },
+    {
+        "input": "z*y / 1",
+        "mapping": {
+            "Foo": 7.89,
+            "Bar": 0.12
+        },
+        "expectedOutput": "z * y"
+    }
+    
+]

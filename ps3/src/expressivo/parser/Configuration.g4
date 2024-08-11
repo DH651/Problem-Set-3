@@ -16,7 +16,7 @@ package expressivo.parser;
     // invalid input and throw a ParseCancellationException.
     public void reportErrorsAsExceptions() {
         // To prevent any reports to standard error, add this line:
-        //removeErrorListeners();
+        removeErrorListeners();
         
         addErrorListener(new BaseErrorListener() {
             public void syntaxError(Recognizer<?, ?> recognizer,

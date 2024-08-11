@@ -1,0 +1,42 @@
+[
+    {
+        "input": "x + y",
+        "mapping": {
+            "x": 1,
+            "y": 4
+        },
+        "expectedOutput": "5"
+    },
+    {
+        "input": "x + y",
+        "mapping": {
+            "Foo": 1,
+            "y": 4
+        },
+        "expectedOutput": "x + 4"
+    },
+    {
+        "input": "Foo + Bar",
+        "mapping": {
+            "Foo": 0,
+            "y": 4
+        },
+        "expectedOutput": "Bar"
+    },
+    {
+        "input": "x - y",
+        "mapping": {
+            "Foo": 1,
+            "y": 0
+        },
+        "expectedOutput": "x"
+    },
+    {
+        "input": "Bar + z",
+        "mapping": {
+            "y": 7.89,
+            "Foo": 0.12
+        },
+        "expectedOutput": "Bar + z"
+    }
+]

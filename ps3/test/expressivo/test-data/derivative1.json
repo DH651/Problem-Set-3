@@ -1,0 +1,11 @@
+[
+    { "input": "x * 2", "variable": "x", "expectedOutput": "2" },
+    { "input": "x * x", "variable": "x", "expectedOutput": "2 * x" },
+    { "input": "2 * y", "variable": "x", "expectedOutput": "0" },
+    { "input": "x * y", "variable": "x", "expectedOutput": "y" },
+    { "input": "3 * 5", "variable": "x", "expectedOutput": "0" },
+    { "input": "10 / x", "variable": "x", "expectedOutput": "-10 / (x * x)" },
+    { "input": "x / 10", "variable": "x", "expectedOutput": "0.1" },
+    { "input": "5 / 10", "variable": "x", "expectedOutput": "0" },
+    { "input": "y / x", "variable": "x", "expectedOutput": "(0 - y) / (x * x)" }
+]

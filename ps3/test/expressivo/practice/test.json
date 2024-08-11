@@ -1,0 +1,12 @@
+[
+    {
+        "expression": "2*x + 3",
+        "variable": "x",
+        "expected": "6 + 3"
+    },
+    {
+        "expression": "4*y - 5",
+        "variable": "y",
+        "expected": "8 - 5"
+    }
+]

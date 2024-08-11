@@ -1,8 +1,11 @@
 T__0=1
 T__1=2
-T__2=3
-NUMBER=4
-SPACES=5
-'+'=1
-'('=2
-')'=3
+OP1=3
+OP2=4
+VARIABLE=5
+CONSTANT=6
+SPACES=7
+COMMENT1=8
+COMMENT2=9
+'('=1
+')'=2

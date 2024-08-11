@@ -1,0 +1,8 @@
+[
+    { "input": "x + Foo", "variable": "x", "expectedOutput": "1" },
+    { "input": "x + Foo", "variable": "Foo", "expectedOutput": "1" },
+    { "input": "x + Foo", "variable": "y", "expectedOutput": "0" },
+    { "input": "x - 56.7", "variable": "x", "expectedOutput": "1" },
+    { "input": "45 - Foo", "variable": "Foo", "expectedOutput": "-1" },
+    { "input": "78 - z", "variable": "Foo", "expectedOutput": "0" }    
+]
