@@ -17,27 +17,31 @@ import org.junit.Test;
  */
 public class ExpressionTest {
 
-    // Testing strategy
+    // Testing strategy for parse, toString, derivative, and simplify.
 
-    // Testing strategy for variable
     // Partition on number of characters in the variable: single character, multiple
-    // character
+    // character.
 
-    // Testing strategy for number
-    // Partition on type of number: integer, decimal
-    // Partition on sign of number: positive, negative
+    // Partition on type of number: integer, decimal.
+    // Partition on sign of number: positive, negative.
 
-    // Testing strategy for binary operation
     // Partition on type of binary operation: Division, Subtraction, Addition,
-    // Multiply
-    // Partition on precedence of left operand of a binary operation: not applicable
-    // , lower, higher, same
+    // Multiply.
+    // Partition on precedence of left operand of a binary operation: not
+    // applicable, lower, higher, same.
     // Partition on precedence of right operand of a binary operation:not
-    // applicable, lower, higher, same
+    // applicable, lower, higher, same.
     // Partition on type of left operand of a Binary operation: variable, number,
-    // binary operation
+    // binary operation.
     // Partition on type of right operand of a Binary operation: variable, number,
-    // binary operation
+    // binary operation.
+
+    // Partition on derivative:
+    // Partition on type of input string: a variable, a number, an binary operation.
+
+    // Partition on simplify:
+    // Partition on overlap between variables in expression and variables in
+    // mapping: no overlap, some overlap, all overlap.
 
     @Test(expected = AssertionError.class)
     public void testAssertionsEnabled() {
@@ -106,6 +110,12 @@ public class ExpressionTest {
 	assertFalse("5.789 should not be equal to 5.000", someDecimal.equals(fiveDecimal));
     }
 
+    // outer operation is division,
+    // left operand is a number, a variable, another binary operation.
+    // right operand is a number, a variable, another binary operation.
+    // left operand has same precedence.
+    // right operand has same , higher precedence.
+
     @Test
     public void testParseANDToString1() {
 	// Test Expression 1
@@ -142,6 +152,12 @@ public class ExpressionTest {
 	testToString(testExpression5, "Bar * Foo / (34 - 37)");
 	testParse("(Bar * Foo) / (34 - 37)", expectedExpression5);
     }
+
+    // outer operation is multiplication,
+    // left operand is a number, a variable, another binary operation.
+    // right operand is a number, a variable, another binary operation.
+    // left operand has same precedence, lower precedence.
+    // right operand has same precedence.
 
     @Test
     public void testParseANDToString2() {
@@ -180,6 +196,12 @@ public class ExpressionTest {
 	testToString(testExpression5, "67 * y * z / 4.666");
 
     }
+
+    // outer operation is addition,
+    // left operand is a number, a variable, another binary operation.
+    // right operand is a number, a variable, another binary operation.
+    // left operand has same precedence, higher precedence.
+    // right operand has same precedence, higher precedence.
 
     @Test
     public void testParseANDToString3() {
@@ -221,6 +243,12 @@ public class ExpressionTest {
 
     }
 
+    // outer operation is subtraction,
+    // left operand is a number, a variable, another binary operation.
+    // right operand is a number, a variable, another binary operation.
+    // left operand has same precedence, higher precedence.
+    // right operand has same precedence.
+
     @Test
     public void testParseANDToString4() {
 	// Test Expression 1
@@ -261,6 +289,10 @@ public class ExpressionTest {
 
     }
 
+    // expression is a variable, a number, a binary operation
+    // binary operation is addition, subtraction, division
+    // left and right operands are variable, and number.
+
     @Test
     public void testDerivative1() {
 	// Test data: simple derivative 1
@@ -300,6 +332,10 @@ public class ExpressionTest {
 
     }
 
+    // expression is a variable, a number, a binary operation
+    // binary operation is addition, subtraction, division, multiplication
+    // left and right operands are variable, and number.
+
     @Test
     public void testDerivative2() {
 	// Test simple derivative 2
@@ -335,6 +371,12 @@ public class ExpressionTest {
 	testDerivative(testExpression5, "x", derivedtestExpression5); // d/dx of (y / 34) is 0
 
     }
+
+    // expression is a binary operation
+    // binary operation is division, multiplication
+    // left and right operands are expressions.
+    // left and right operand have same or higher precedence than the outer
+    // operator.
 
     @Test
     public void testDerivative3() {
@@ -383,6 +425,12 @@ public class ExpressionTest {
 	// v) is -u / v^2
 
     }
+
+    // expression is a variable, a number, a binary operation
+    // binary operation is multiplication, addition
+    // left and right operands are binary operations.
+    // left and right operand have same or lower precedence than the outer
+    // expression.
 
     @Test
     public void testDerivative4() {
@@ -435,6 +483,10 @@ public class ExpressionTest {
 
     }
 
+    // expression is a binary operation
+    // binary operation is addition and subtraction
+    // left and right operand is a variable, a number.
+    // all, some , no variables in mapping are present in expression
     @Test
     public void testSimplify1() {
 
@@ -479,6 +531,10 @@ public class ExpressionTest {
 
     }
 
+    // expression is a binary operation
+    // binary operation is a multiplication.
+    // left and right operand is a variable, a number.
+    // all, some , no variables in mapping are present in expression
     @Test
     public void testSimplify2() {
 
@@ -525,6 +581,11 @@ public class ExpressionTest {
 	testSimplify(testExpression5, mapping5, resultExpression5);
     }
 
+    // expression is a binary operation
+    // binary operation is a division.
+    // left and right operand is a variable, a number.
+    // all, some , no variables in mapping are present in expression
+
     @Test
     public void testSimplify3() {
 	// 1. Input: x / 98.43; mapping { foo = 34 } => Answer: x / 98.43
@@ -567,6 +628,12 @@ public class ExpressionTest {
 											       // mapped
 	testSimplify(testExpression5, mapping5, resultExpression5);
     }
+
+    // expression is a binary operation.
+    // binary operation is a division, addition, subtraction, multiplication.
+    // left and right operand is binary operations with same, higher, lower
+    // precedences.
+    // all, some , no variables in mapping are present in expression.
 
     @Test
     public void testSimplify4() {
